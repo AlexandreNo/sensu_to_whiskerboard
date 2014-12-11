@@ -45,7 +45,9 @@ headers = {
 }
 
 for service in services_list['objects']:
-	if service.get('name') == sensu_json['check'].get('name'):
+        sensu_check_name = sensu_json['check'].get('name').lower()
+	slug_name = service.get('slug').lower()
+        if slug_name == sensu_check_name:
 		if sensu_json['check'].get('status') == STATE_OK:
 			params = {
 				"status" : STATUS_UP_URI,
